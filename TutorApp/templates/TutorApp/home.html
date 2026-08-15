@@ -1,0 +1,53 @@
+{% extends 'TutorApp/base.html' %}
+{% block title %} Tutor App {% endblock %}
+
+{% block content %}
+        
+    <main class="container">
+        <!-- Message Banners -->
+        {% if messages %}
+        {% for message in messages %}
+        <div class="messages-container">{{ message }}</div>
+        {% endfor %}
+        {% endif %}
+
+        <h1 class="page-title">Available Tutors</h1>
+
+        <!-- Tutor Cards Container -->
+        <div class="tutor-grid">
+            {% for tutor in tutors %}
+            <article class="tutor-card">
+                <h2>{{ tutor.name }}</h2>
+                <span class="tutor-subject">{{ tutor.subject }}</span>
+                <p class="tutor-bio">{{ tutor.bio|truncatewords:20 }}</p>
+                <a href="{% url 'tutor_detail' tutor.id %}" class="btn-primary">View Profile & Book</a>
+            </article>
+            {% empty %}
+            <div class="empty-state">
+                <p>No tutors are available at the moment. Please check back later.</p>
+            </div>
+            {% endfor %}
+        </div>
+    </main>
+
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // Fixed JavaScript logic selector to gracefully clean up all flash containers 
+            const messageBanners = document.querySelectorAll('.messages-container');
+
+            messageBanners.forEach(messageBanner => {
+                if (messageBanner) {
+                    setTimeout(() => {
+                        messageBanner.style.transition = "opacity 0.5s ease";
+                        messageBanner.style.opacity = "0";
+
+                        setTimeout(() => {
+                            messageBanner.remove();
+                        }, 500); // Cleaned up layout snap delay from 3000ms to match the 0.5s opacity style transition
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+
+    {% endblock %}

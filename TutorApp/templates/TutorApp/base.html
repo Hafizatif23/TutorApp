@@ -1,0 +1,29 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}
+        Tutor App
+        {% endblock %}</title>
+    <!-- Link to your external stylesheet -->
+    <link rel="stylesheet" href="{% static 'TutorApp/style.css' %}">
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <!-- Logo links back to home -->
+            <a href="{% url 'home' %}" class="nav-brand">🎓 TutorApp</a>
+        </div>
+    </nav>
+    {% block content %}
+    
+        {% endblock %}
+
+</body>
+
+</html>

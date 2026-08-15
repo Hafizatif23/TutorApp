@@ -1,0 +1,54 @@
+{% extends 'TutorApp/base.html' %}
+{% block title %} Book Session {% endblock %}
+
+
+{% block content %}
+    <main class="narrow-container">
+        <!-- Tutor Bio Info Display Block -->
+        <section class="profile-header">
+            <h1>{{ tutor.name }}</h1>
+            <div class="profile-meta">
+                <span class="tutor-subject">{{ tutor.subject }}</span>
+            </div>
+            <p class="tutor-bio"><strong>Bio:</strong> {{ tutor.bio }}</p>
+        </section>
+
+        <!-- Booking Layout Panel Wrapper -->
+        <section class="booking-form-box">
+            <h3>Book a Session with {{ tutor.name }}</h3>
+            
+            <form method="POST">
+                {% csrf_token %}
+                
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required placeholder="Write your name here">
+                </div>
+
+                <div class="form-group">
+                    <label for="contact">Contact Number</label>
+                    <input type="tel" id="contact" name="contact" required placeholder="Write your contact number here">
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required placeholder="Your email address">
+                </div>
+
+                <div class="form-group">
+                    <label for="date">Select Date</label>
+                    <input type="date" id="date" name="date" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Write Message</label>
+                    <textarea id="message" name="message" placeholder="Write a message here to book a session with this tutor"></textarea>
+                </div>
+
+                <button type="submit" class="btn-primary">Book Session</button>
+            </form>
+        </section>
+    </main>
+
+{% endblock %}
+

@@ -1,0 +1,828 @@
+
+/* =========================================================
+   TUTOR PLATFORM — NAVY + TEAL DESIGN SYSTEM
+========================================================= */
+
+:root {
+    --bg-primary: #0b1120;
+    --bg-secondary: #111827;
+    --bg-card: #172033;
+
+    --text-main: #f8fafc;
+    --text-muted: #94a3b8;
+    --text-light: #64748b;
+
+    --accent: #22d3ee;
+    --accent-hover: #06b6d4;
+    --accent-dark: #0891b2;
+
+    --accent-soft: rgba(34, 211, 238, 0.10);
+    --accent-border: rgba(34, 211, 238, 0.25);
+
+    --success: #34d399;
+    --success-soft: rgba(52, 211, 153, 0.10);
+
+    --danger: #fb7185;
+
+    --border: #243047;
+    --border-hover: #334155;
+
+    --radius-sm: 8px;
+    --radius: 12px;
+    --radius-lg: 18px;
+
+    --shadow:
+        0 10px 30px rgba(0, 0, 0, 0.25);
+
+    --shadow-hover:
+        0 18px 45px rgba(0, 0, 0, 0.35);
+
+    --transition: 0.25s ease;
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
+
+* {
+    box-sizing: border-box;
+
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top right,
+            rgba(34, 211, 238, 0.07),
+            transparent 35%
+        ),
+        var(--bg-primary);
+
+    color: var(--text-main);
+
+    line-height: 1.6;
+
+    min-height: 100vh;
+}
+
+a {
+    color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+    font: inherit;
+}
+
+
+/* =========================================================
+   CONTAINERS
+========================================================= */
+
+.container {
+    width: min(1100px, calc(100% - 2rem));
+
+    margin: 0 auto;
+}
+
+.narrow-container {
+    width: min(600px, calc(100% - 2rem));
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   TYPOGRAPHY
+========================================================= */
+
+h1,
+h2,
+h3 {
+    color: var(--text-main);
+
+    line-height: 1.25;
+
+    font-weight: 750;
+}
+
+h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+
+    letter-spacing: -0.04em;
+}
+
+h2 {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+
+    letter-spacing: -0.025em;
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.page-title {
+    margin-bottom: 2rem;
+
+    font-size: clamp(2rem, 5vw, 2.7rem);
+
+    letter-spacing: -0.04em;
+
+    padding-bottom: 1rem;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+/* =========================================================
+   NAVBAR
+========================================================= */
+
+.navbar {
+    background: rgba(11, 17, 32, 0.85);
+
+    border-bottom: 1px solid var(--border);
+
+    position: sticky;
+
+    top: 0;
+
+    z-index: 100;
+
+    padding: 1rem 0;
+
+    margin-bottom: 2.5rem;
+
+    backdrop-filter: blur(16px);
+}
+
+.nav-container {
+    width: min(1100px, calc(100% - 2rem));
+
+    margin: 0 auto;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 1rem;
+}
+
+.nav-brand {
+    color: var(--text-main);
+
+    text-decoration: none;
+
+    font-size: 1.35rem;
+
+    font-weight: 800;
+
+    letter-spacing: -0.03em;
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 0.5rem;
+
+    transition: color var(--transition);
+}
+
+.nav-brand::before {
+    content: "";
+
+    width: 9px;
+
+    height: 9px;
+
+    background: var(--accent);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 12px rgba(34, 211, 238, 0.8);
+}
+
+.nav-brand:hover {
+    color: var(--accent);
+}
+
+
+/* =========================================================
+   NOTIFICATIONS
+========================================================= */
+
+.messages-container {
+    background:
+        linear-gradient(
+            135deg,
+            rgba(52, 211, 153, 0.12),
+            rgba(34, 211, 238, 0.05)
+        );
+
+    color: #a7f3d0;
+
+    padding: 1rem 1.1rem;
+
+    border-radius: var(--radius);
+
+    margin-bottom: 1.5rem;
+
+    border: 1px solid rgba(52, 211, 153, 0.25);
+
+    font-weight: 550;
+
+    box-shadow: var(--shadow);
+
+    animation: notification-in 0.35s ease;
+}
+
+@keyframes notification-in {
+    from {
+        opacity: 0;
+
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   TUTOR GRID
+========================================================= */
+
+.tutor-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fill, minmax(280px, 1fr));
+
+    gap: 1.5rem;
+}
+
+
+/* =========================================================
+   TUTOR CARD
+========================================================= */
+
+.tutor-card {
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #172033,
+            #111827
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    padding: 1.6rem;
+
+    box-shadow: var(--shadow);
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-height: 100%;
+
+    transition:
+        transform var(--transition),
+        border-color var(--transition),
+        box-shadow var(--transition);
+}
+
+
+/* Decorative top glow */
+
+.tutor-card::before {
+    content: "";
+
+    position: absolute;
+
+    top: 0;
+
+    left: 0;
+
+    width: 100%;
+
+    height: 2px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent,
+            var(--accent),
+            transparent
+        );
+
+    opacity: 0;
+
+    transition: opacity var(--transition);
+}
+
+.tutor-card:hover {
+    transform: translateY(-7px);
+
+    border-color: var(--accent-border);
+
+    box-shadow: var(--shadow-hover);
+}
+
+.tutor-card:hover::before {
+    opacity: 1;
+}
+
+
+/* =========================================================
+   TUTOR SUBJECT
+========================================================= */
+
+.tutor-subject {
+    display: inline-flex;
+
+    align-items: center;
+
+    align-self: flex-start;
+
+    background: var(--accent-soft);
+
+    color: var(--accent);
+
+    border: 1px solid var(--accent-border);
+
+    padding: 0.3rem 0.75rem;
+
+    border-radius: 999px;
+
+    font-size: 0.8rem;
+
+    font-weight: 700;
+
+    letter-spacing: 0.02em;
+
+    margin-bottom: 1rem;
+}
+
+
+/* =========================================================
+   TUTOR BIO
+========================================================= */
+
+.tutor-bio {
+    color: var(--text-muted);
+
+    font-size: 0.95rem;
+
+    line-height: 1.7;
+
+    margin-bottom: 1.5rem;
+
+    flex-grow: 1;
+}
+
+
+/* =========================================================
+   BUTTON
+========================================================= */
+
+.btn-primary {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--accent),
+            var(--accent-dark)
+        );
+
+    color: #042f35;
+
+    text-decoration: none;
+
+    padding: 0.75rem 1.25rem;
+
+    border-radius: var(--radius);
+
+    border: none;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    transition:
+        transform var(--transition),
+        box-shadow var(--transition),
+        filter var(--transition);
+}
+
+.btn-primary:hover {
+    filter: brightness(1.08);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 8px 20px rgba(34, 211, 238, 0.2);
+}
+
+.btn-primary:active {
+    transform: scale(0.98);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid var(--accent);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.empty-state {
+    text-align: center;
+
+    color: var(--text-muted);
+
+    grid-column: 1 / -1;
+
+    padding: 4rem 2rem;
+
+    background: var(--bg-card);
+
+    border: 1px dashed var(--border-hover);
+
+    border-radius: var(--radius-lg);
+
+    box-shadow: var(--shadow);
+}
+
+.empty-state h3 {
+    margin-bottom: 0.5rem;
+}
+
+.empty-state p {
+    max-width: 450px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   BOOKING FORM
+========================================================= */
+
+.booking-form-box {
+    background:
+        linear-gradient(
+            145deg,
+            #172033,
+            #111827
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    padding: 2rem;
+
+    box-shadow: var(--shadow);
+
+    margin-top: 1.5rem;
+}
+
+.form-group {
+    margin-bottom: 1.25rem;
+
+    display: flex;
+
+    flex-direction: column;
+}
+
+.form-group:last-child {
+    margin-bottom: 0;
+}
+
+.form-group label {
+    color: var(--text-main);
+
+    font-weight: 650;
+
+    font-size: 0.9rem;
+
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    width: 100%;
+
+    padding: 0.8rem 1rem;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-sm);
+
+    font-size: 1rem;
+
+    font-family: inherit;
+
+    color: var(--text-main);
+
+    background: #0f172a;
+
+    transition:
+        border-color var(--transition),
+        box-shadow var(--transition),
+        background-color var(--transition);
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+    color: var(--text-light);
+}
+
+.form-group input:hover,
+.form-group textarea:hover,
+.form-group select:hover {
+    border-color: var(--border-hover);
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    outline: none;
+
+    border-color: var(--accent);
+
+    background: #111c30;
+
+    box-shadow:
+        0 0 0 3px rgba(34, 211, 238, 0.1);
+}
+
+.form-group textarea {
+    min-height: 120px;
+
+    resize: vertical;
+}
+
+
+/* =========================================================
+   PROFILE
+========================================================= */
+
+.profile-header {
+    background:
+        linear-gradient(
+            145deg,
+            #172033,
+            #111827
+        );
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius-lg);
+
+    padding: 2.25rem;
+
+    box-shadow: var(--shadow);
+
+    margin-bottom: 2rem;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.profile-header::after {
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+
+    height: 220px;
+
+    right: -100px;
+
+    top: -100px;
+
+    background: var(--accent);
+
+    opacity: 0.05;
+
+    border-radius: 50%;
+}
+
+.profile-header h1 {
+    margin-bottom: 0.5rem;
+}
+
+.profile-meta {
+    margin: 0.6rem 0 1rem;
+
+    color: var(--text-muted);
+}
+
+
+/* =========================================================
+   BACK LINK
+========================================================= */
+
+.back-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 0.4rem;
+
+    color: var(--accent);
+
+    font-weight: 650;
+
+    text-decoration: none;
+
+    margin-bottom: 1.5rem;
+
+    transition:
+        color var(--transition),
+        transform var(--transition);
+}
+
+.back-link:hover {
+    color: var(--accent-hover);
+
+    transform: translateX(-4px);
+}
+
+
+/* =========================================================
+   SELECTION
+========================================================= */
+
+::selection {
+    background: rgba(34, 211, 238, 0.25);
+
+    color: white;
+}
+
+
+/* =========================================================
+   SCROLLBAR
+========================================================= */
+
+::-webkit-scrollbar {
+    width: 9px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: #334155;
+
+    border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #475569;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .container,
+    .narrow-container {
+        width: min(
+            calc(100% - 2rem),
+            1100px
+        );
+    }
+
+    .navbar {
+        margin-bottom: 1.5rem;
+    }
+
+    .tutor-grid {
+        grid-template-columns:
+            repeat(
+                auto-fill,
+                minmax(250px, 1fr)
+            );
+
+        gap: 1rem;
+    }
+
+    .booking-form-box,
+    .profile-header {
+        padding: 1.5rem;
+    }
+}
+
+
+@media (max-width: 500px) {
+
+    .container,
+    .narrow-container {
+        width: calc(100% - 1.25rem);
+    }
+
+    .nav-container {
+        width: calc(100% - 1.25rem);
+    }
+
+    .nav-brand {
+        font-size: 1.15rem;
+    }
+
+    .tutor-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tutor-card {
+        padding: 1.35rem;
+    }
+
+    .booking-form-box,
+    .profile-header {
+        padding: 1.25rem;
+    }
+
+    .empty-state {
+        padding: 3rem 1.25rem;
+    }
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+
+        transition-duration: 0.01ms !important;
+
+        scroll-behavior: auto !important;
+    }
+}
+
