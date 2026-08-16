@@ -1,6 +1,7 @@
 from django.contrib import admin
 from .models import Tutor, Booking
 from django.core.mail import send_mail
+from django.utils.html import escape
 # Register your models here.
 
 @admin.register(Tutor)
@@ -41,23 +42,42 @@ class BookingAdmin(admin.ModelAdmin):
     def make_confirmed(self, request, queryset):
         queryset.update(status='confirmed')
 
-        for booking in queryset:
+        confirmed_booking = queryset.select_related('tutor')
+
+        for booking in confirmed_booking:
+
+            student = escape(booking.student_name)
+            tutor = escape(booking.tutor.name)
+
+            text_content = f'Hi {booking.student_name}, your session with {booking.tutor.name} on {booking.date} has been confirmed.'
+            html_content = f'Hi {student}, your session with  <strong>{tutor}</strong> on {booking.date} has been confirmed.'
             send_mail(
-                'Your tutoring session is confirmed',
-                f'Hi {booking.student_name}, your session with {booking.tutor.name} on {booking.date} has been confirmed.',
-                'noreply@tutorapp.com',
-                [booking.email]
-            )
+                    subject='Your tutoring session is confirmed',
+                    message=text_content,
+                    recipient_list=[booking.email],
+                    html_message=html_content
+                )
 
     @admin.action(description='Mark selected booking as Declined')
     def make_declined(self, request, queryset):
         queryset.update(status= 'declined')
 
-        for booking in queryset:
+        declined_booking = queryset.select_related('tutor')
+        
+        for booking in declined_booking:
+
+            student = escape(booking.student_name)
+            tutor = escape(booking.tutor.name)
+
+            text_content = f'Hi {booking.student_name}, your session with {booking.tutor.name} on {booking.date} has been declined.'
+            html_content = f'Hi {student}, your session with  <strong>{tutor}</strong> on {booking.date} has been declined.'
+
             send_mail(
-                'Your tutoring session is declined',
-                f'Hi {booking.student_name}, your session with {booking.tutor.name} on {booking.date} has been declined.',
-                'noreply@tutorapp.com',
-                [booking.email]
-            )
+                    subject='Your tutoring session is confirmed',
+                    message=text_content,
+                    from_email=None,
+                    recipient_list=[booking.email],
+                    html_message=html_content
+                )
+      
 
